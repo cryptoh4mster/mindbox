@@ -9,7 +9,12 @@ namespace Figures.Exceptions
     /// </summary>
     public class IncorrectValueException : Exception
     {
-        public IncorrectValueException() : base ("Одно из значений меньше либо равно нулю")
+        public IncorrectValueException() {}
+        public IncorrectValueException(string message) : base (message)
+        {
+
+        }
+        public IncorrectValueException(string message, Exception inner) : base(message, inner)
         {
 
         }

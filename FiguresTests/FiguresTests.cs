@@ -8,88 +8,134 @@ namespace FiguresTests
     
     public class FiguresTests
     {
+        #region Тестирование круга
         /// <summary>
         /// Проверка прерывания при отрицательном радиусе круга
         /// </summary>
         [Fact]
-        public void CheckIncorrectCircleRadiusException()
+        public void Add_NegativeCircleRadius_ReturnsIncorrectValueException() 
         {
+            //Assert
             Assert.Throws<IncorrectValueException>(()=> { new Circle(-5); });
-        }
-
-        /// <summary>
-        /// Проверка прерывания при отрицательной стороне треугольника
-        /// </summary>
-        [Fact]
-        public void CheckIncorrectTriangleValuesException()
-        {
-            Assert.Throws<IncorrectValueException>(() => { new Triangle(1, -2, 3); });
         }
 
         /// <summary>
         /// Проверка правильности вычисления площади круга
         /// </summary>
         [Fact]
-        public void CheckCorrectCircleAreaValue()
+        public void IsEqual_CircleRadius_ReturnsCircleArea()
         {
-            Assert.Equal(38.4845, Math.Round(new Circle(3.5).GetArea(), 4));
-        }
+            //Arrange
+            Circle circle = new Circle(3.5);
+            
+            //Act
+            var circleArea = Math.Round(circle.GetArea(), 4);
 
-        /// <summary>
-        /// Проверка правильности вычисления площади треугольника
-        /// </summary>
-        [Fact]
-        public void CheckCorrectTriangleAreaValue()
-        {
-            Assert.Equal(6, new Triangle(3, 4, 5).GetArea());
-        }
-
-        /// <summary>
-        /// Проверка правильности определения прямоугольности треугольника, ожидается true
-        /// </summary>
-        [Fact]
-        public void CheckCorrectIsRightTriangle()
-        {
-            Assert.True(new Triangle(3, 4, 5).IsRightTriangle());
-        }
-
-        /// <summary>
-        /// Проверка правильности определения прямоугольности треугольника, ожидается false
-        /// </summary>
-        [Fact]
-        public void CheckIncorrectIsRightTriangle()
-        {
-            Assert.False(new Triangle(5, 5, 5).IsRightTriangle());
+            //Assert
+            Assert.Equal(38.4845, circleArea);
         }
 
         /// <summary>
         /// Проверка правильности вычисления площади круга при полиморфизме
         /// </summary>
         [Fact]
-        public void CheckCorrectShapeCircleAreaValue()
+        public void IsEqual_ShapeCircleRadius_ReturnsCircleArea()
         {
+            //Arrange
             Shape circle = new Circle(3.5);
-            Assert.Equal(38.4845, Math.Round(circle.GetArea(), 4));
-        }
 
+            //Act
+            var circleArea = Math.Round(circle.GetArea(), 4);
+
+            //Assert
+            Assert.Equal(38.4845, circleArea);
+        }
+        #endregion
+
+        #region Тестирование треугольника
         /// <summary>
-        /// Проверка правильности вычисления площади треугольника при полиморфизме
+        /// Проверка прерывания при отрицательной стороне треугольника
         /// </summary>
         [Fact]
-        public void CheckCorrectShapeTriangleAreaValue()
+        public void Add_NegativeTriangleSide_ReturnsIncorrectValueException()
         {
-            Shape triangle = new Triangle(3, 4, 5);
-            Assert.Equal(6, triangle.GetArea());
+            //Assert
+            Assert.Throws<IncorrectValueException>(() => { new Triangle(1, -2, 3); });
         }
 
         /// <summary>
         /// Проверка прерывания при несуществующем с введенными сторонами треугольнике
         /// </summary>
         [Fact]
-        public void CheckIncorrectTriangleSidesValues()
+        public void Add_NotExistingTriangleSides_ReturnsIncorrectTriangleSidesValuesException()
         {
+            //Assert
             Assert.Throws<IncorrectTriangleSidesValuesException>(() => { new Triangle(3, 4, 7); });
         }
 
+        /// <summary>
+        /// Проверка правильности вычисления площади треугольника
+        /// </summary>
+        [Fact]
+        public void IsEqual_TriangleSides_ReturnsTriangleArea()
+        {
+            //Arrange
+            Triangle triangle = new Triangle(3, 4, 5);
+
+            //Act
+            var triangleArea = triangle.GetArea();
+
+            //Assert
+            Assert.Equal(6, triangleArea);
+        }
+
+        /// <summary>
+        /// Проверка правильности определения прямоугольности треугольника, ожидается true
+        /// </summary>
+        [Fact]
+        public void IsRightTriangle_TriangleSides_ShouldBeTrue()
+        {
+            //Arrange
+            Triangle triangle = new Triangle(3, 4, 5);
+
+            //Act
+            bool isRightTriangle = triangle.IsRightTriangle();
+
+            //Assert
+            Assert.True(isRightTriangle);
+        }
+
+        /// <summary>
+        /// Проверка правильности определения прямоугольности треугольника, ожидается false
+        /// </summary>
+        [Fact]
+        public void IsRightTriangle_TriangleSides_ShouldBeFalse()
+        {
+            //Arrange
+            Triangle triangle = new Triangle(5, 5, 5);
+
+            //Act
+            bool isRightTriangle = triangle.IsRightTriangle();
+
+            //Assert
+            Assert.False(isRightTriangle);
+        }
+
+        /// <summary>
+        /// Проверка правильности вычисления площади треугольника при полиморфизме
+        /// </summary>
+        [Fact]
+        public void IsEqual_ShapeTriangleSides_ReturnsTriangleArea()
+        {
+            //Arrange
+            Shape triangle = new Triangle(3, 4, 5);
+
+            //Act
+            var triangleArea = triangle.GetArea();
+
+            //Assert
+            Assert.Equal(6, triangleArea);
+        }
+        #endregion  
     }
 }

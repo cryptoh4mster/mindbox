@@ -21,7 +21,7 @@ namespace Figures
         public Circle(double radius)
         {
             if (radius <= 0)
-                throw new IncorrectValueException();
+                throw new IncorrectValueException("Радиус круга не может быть отрицательным");
 
             _radius = radius;
         }

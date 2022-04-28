@@ -7,9 +7,15 @@ namespace Figures.Exceptions
     /// <summary>
     /// Exception при несуществующем с введенными сторонами треугольнике
     /// </summary>
+    [Serializable]
     public class IncorrectTriangleSidesValuesException : Exception
     {
-        public IncorrectTriangleSidesValuesException() : base("Треугольника с данными сторонами не существует")
+        public IncorrectTriangleSidesValuesException() { }
+        public IncorrectTriangleSidesValuesException(string message) : base(message)
+        {
+
+        }
+        public IncorrectTriangleSidesValuesException(string message, Exception inner) : base(message, inner)
         {
 
         }

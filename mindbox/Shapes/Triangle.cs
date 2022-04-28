@@ -23,10 +23,10 @@ namespace Figures
         public Triangle(double a, double b, double c)
         {
             if (a <= 0 || b <= 0 || c <= 0)
-                throw new IncorrectValueException();
+                throw new IncorrectValueException("Сторона треугольника не может быть меньше либо равна нулю");
 
             if (((a + b) <= c) || ((a + c) <= b) || ((b + c) <= a))
-                throw new IncorrectTriangleSidesValuesException();
+                throw new IncorrectTriangleSidesValuesException("Треугольника с данными значениями не существует");
 
             _a = a;
             _b = b;
